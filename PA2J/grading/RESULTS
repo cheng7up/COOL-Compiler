@@ -1,0 +1,2 @@
+	-1 (s03)	 EOF in single-line comment
+	-1 (weirdcharcomment)	 various binary characters in a comment [submission crashed on this input]
