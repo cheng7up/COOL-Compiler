@@ -138,6 +138,7 @@ DIGIT = [0-9]
 
 
 <YYINITIAL>"--"    { /* Line Comment */ yybegin(LINE_COMMENT); }
+<LINE_COMMENT>.*   {/* The end could be EOF */}
 <LINE_COMMENT>.*\n { yybegin(YYINITIAL); curr_lineno += 1; }
 
 <YYINITIAL>"(*"     {/* Block Comment */ 
@@ -180,8 +181,8 @@ DIGIT = [0-9]
 <YYINITIAL>[Oo][Ff]                         { return new Symbol(TokenConstants.OF); }
 <YYINITIAL>[Nn][Oo][Tt]                     { return new Symbol(TokenConstants.NOT); }
 
-<YYINITIAL>[A-Z][_A-Za-z0-9]* { /* Type Identifyer */ return new Symbol(TokenConstants.TYPEID, AbstractTable.stringtable.addString(yytext())); }
-<YYINITIAL>[a-z][_A-Za-z0-9]* { /* Object Identifyer */ return new Symbol(TokenConstants.OBJECTID, AbstractTable.stringtable.addString(yytext())); }
+<YYINITIAL>[A-Z][_A-Za-z0-9]* { /* Type Identifyer */ return new Symbol(TokenConstants.TYPEID, AbstractTable.idtable.addString(yytext())); }
+<YYINITIAL>[a-z][_A-Za-z0-9]* { /* Object Identifyer */ return new Symbol(TokenConstants.OBJECTID, AbstractTable.idtable.addString(yytext())); }
 
 
 <YYINITIAL>"=>"	    { return new Symbol(TokenConstants.DARROW); }
