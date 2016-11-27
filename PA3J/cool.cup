@@ -258,7 +258,7 @@ let_optional_assign_expression
 let_expr
         ::= OBJECTID:o COLON TYPEID:t let_optional_assign_expression:loae IN expr:e
             {: RESULT = new let(curr_lineno(), o, t, loae, e); :}
-        | OBJECTID:o COLON TYPEID:t let_optional_assign_expression:loae let_expr:le
+        | OBJECTID:o COLON TYPEID:t let_optional_assign_expression:loae COMMA let_expr:le
             {: RESULT = new let(curr_lineno(), o, t, loae, le); :}
         | error COMMA let_expr:le
             {: RESULT = le; :}
